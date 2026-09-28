@@ -1,0 +1,311 @@
+/* ── Google Fonts: Playfair Display + Outfit + Plus Jakarta Sans ────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── AgriFlow Signature Theme Tokens ───────────────────────── */
+    --agri-dark:       #0E2A1F; /* Deep Forest Green */
+    --agri-pine:       #143D2D; /* Rich Pine */
+    --agri-forest:     #0E2A1F; /* Primary Dark */
+    --agri-harvest:    #EAB308; /* Warm Harvest Gold */
+    --agri-gold:       #EAB308; /* Ochre Accent */
+    --agri-cream:      #FDFBF7; /* Warm Cream Base */
+    --agri-stone:      #F5EFE6; /* Warm Sand Base */
+    --agri-charcoal:   #0E2A1F; /* Deep Forest Charcoal */
+    --agri-muted:      #4A5A52; /* Sage Muted Text */
+    --agri-border:     rgba(231, 229, 228, 0.7); /* border-stone-200/70 */
+
+    /* ── Easing curves ────────────────────────────────────────────── */
+    --ease-smooth:     cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-out-expo:   cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  body {
+    background-color: #FDFBF7;
+    color: #0E2A1F;
+    font-family: 'Plus Jakarta Sans', 'Outfit', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', 'Outfit', system-ui, sans-serif;
+    color: #0E2A1F;
+    letter-spacing: -0.025em;
+    font-weight: 900;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--agri-harvest);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Autofill dark theme fix */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #0F2018 inset !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
+@layer components {
+  /* ── AgriFlow Motion Card & Image Zoom ──────────────────────── */
+  .agriflow-card {
+    transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1), border-color 400ms ease;
+    will-change: transform, box-shadow;
+  }
+
+  .agriflow-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 40px -15px rgba(14, 42, 31, 0.12), 0 8px 16px -8px rgba(234, 179, 8, 0.15);
+    border-color: rgba(234, 179, 8, 0.5);
+  }
+
+  .agriflow-img-zoom {
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+
+  .group:hover .agriflow-img-zoom {
+    transform: scale(1.08) rotate(0.5deg);
+  }
+
+  /* ── Pure White Ultra-Soft Border Cards ─────────────────────── */
+  .agriflow-surface-card {
+    @apply bg-white border border-stone-200/70 shadow-sm rounded-2xl;
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(231, 229, 228, 0.7);
+    box-shadow: 0 10px 30px -10px rgba(14, 42, 31, 0.08);
+    border-radius: 1.25rem;
+  }
+
+  /* ── AgriFlow Forest Navbar ─────────────────────────────────── */
+  .navbar-agriflow {
+    background: rgba(14, 42, 31, 0.96);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(234, 179, 8, 0.22);
+    box-shadow: 0 6px 28px -4px rgba(14, 42, 31, 0.4);
+  }
+
+  .navbar-pine {
+    background: rgba(14, 42, 31, 0.96);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(234, 179, 8, 0.22);
+    box-shadow: 0 6px 28px -4px rgba(14, 42, 31, 0.4);
+  }
+
+  /* ── Warm Harvest Gold CTA Button ───────────────────────────── */
+  .btn-amber,
+  .btn-harvest {
+    @apply font-black rounded-full px-7 py-3 inline-flex items-center justify-center gap-2;
+    background: #EAB308;
+    color: #0E2A1F;
+    box-shadow: 0 6px 22px rgba(234, 179, 8, 0.35);
+    transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-amber:hover,
+  .btn-harvest:hover {
+    background: #FACC15;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(234, 179, 8, 0.45);
+  }
+
+  .btn-dark {
+    @apply font-black rounded-full px-7 py-3 inline-flex items-center justify-center gap-2 text-white;
+    background: #0E2A1F;
+    box-shadow: 0 6px 20px rgba(14, 42, 31, 0.25);
+    transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-dark:hover {
+    background: #143D2D;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 26px rgba(14, 42, 31, 0.35);
+  }
+
+  /* ── Badges ─────────────────────────────────────────────────── */
+  .badge-status-verified {
+    @apply bg-emerald-50 text-emerald-900 border border-emerald-300 px-3 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5;
+  }
+
+  .badge-status-pending {
+    @apply bg-amber-50 text-amber-900 border border-amber-300 px-3 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5;
+  }
+
+  .badge-status-rejected {
+    @apply bg-rose-50 text-rose-800 border border-rose-300 px-3 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5;
+  }
+
+  /* ── User Avatar Badge ──────────────────────────────────────── */
+  .avatar-badge {
+    @apply w-9 h-9 rounded-full font-black text-sm flex items-center justify-center select-none text-[#0E2A1F];
+    background: linear-gradient(135deg, #EAB308, #CA8A04);
+    box-shadow: 0 2px 10px rgba(234, 179, 8, 0.35);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .avatar-badge:hover {
+    box-shadow: 0 4px 18px rgba(234, 179, 8, 0.5), 0 0 0 2px rgba(234, 179, 8, 0.6);
+    transform: scale(1.05);
+  }
+
+  /* Backward compatibility for previous class names */
+  .animated-card-lift {
+    transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1), border-color 400ms ease;
+    will-change: transform, box-shadow;
+  }
+  .animated-card-lift:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 40px -15px rgba(14, 42, 31, 0.12), 0 8px 16px -8px rgba(234, 179, 8, 0.15);
+    border-color: rgba(234, 179, 8, 0.5);
+  }
+  .animated-img-zoom {
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+  .group:hover .animated-img-zoom {
+    transform: scale(1.08) rotate(0.5deg);
+  }
+}
+
+/* ── Keyframe Animations ──────────────────────────────────────── */
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes floatSubtle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(234, 179, 8, 0);
+  }
+}
+
+/* Animation Utility Classes */
+.animate-slide-in-down {
+  animation: slideInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-zoom-in {
+  animation: zoomIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-bounce-slow,
+.animate-float-subtle,
+.animate-float {
+  animation: floatSubtle 3.5s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.2s infinite;
+}
+
+/* ── Custom Scrollbars ────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FDFBF7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0E2A1F;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #143D2D;
+}
+
+/* ── Leaflet Map Custom Overrides ─────────────────────────────── */
+.leaflet-container {
+  font-family: inherit;
+  border-radius: 1.25rem;
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 1.25rem !important;
+  box-shadow: 0 12px 32px rgba(14, 42, 31, 0.15) !important;
+  border: 1px solid rgba(231, 229, 228, 0.7);
+  background: #FFFFFF !important;
+}
+.leaflet-popup-content {
+  margin: 14px 18px !important;
+  font-family: inherit;
+  color: #0E2A1F;
+}
+.leaflet-popup-tip-container { display: none; }
